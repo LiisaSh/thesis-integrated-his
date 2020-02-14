@@ -1,0 +1,29 @@
+﻿@model DHIS.Models.Hospital
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Hospital Details</h2>
+        </div>
+        <div class="card-body">
+            <div>
+                <h4>Hospital</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HospitalName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.HospitalName)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.HospitalID">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+            </div>
+</div>

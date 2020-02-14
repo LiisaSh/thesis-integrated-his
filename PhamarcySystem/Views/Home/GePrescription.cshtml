@@ -1,0 +1,40 @@
+﻿@model PhamarcySystem.Models.PreScribeClass
+
+@{
+    ViewData["Title"] = "GePrescription";
+}
+
+<h2>Search for Patient Prescription</h2>
+
+<div>
+  
+    <hr />
+    <form method="post" asp-action="GePrescription">
+        <div class="form-group">
+            <label for="id">Patient National Identity Number:</label>
+            <input class="form-control" name="id" required/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-primary">Get Prescription</button>
+        </div>
+    </form>
+    @if (Model != null)
+    {
+
+        <div class="form-group">
+            <label>Prescription Notes</label>
+            <p class="text-justify"> @Html.Raw(Model.PrescriptionNotes.Replace(Environment.NewLine, "<br />"))</p>
+        </div>
+        
+        <form asp-action="Update">
+            @if (!Model.PrescriptionCollected)
+            {
+                <input type="hidden" value="@Model.PrescriptionId" name="id" />
+                <input type="hidden" value="@Model.Diagonosis" name="Diagonosis" />
+                <button class="btn btn-info" type="submit">Mark medication as Collected</button>
+            }
+
+        </form>
+    }
+    </div>
+

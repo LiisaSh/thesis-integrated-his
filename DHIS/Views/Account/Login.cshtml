@@ -1,0 +1,98 @@
+﻿@model LoginViewModel
+@using DHIS.Models.IdentityModels
+@using DHIS.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eHealth | CMS</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/styles/css/themes/lite-purple.min.css">
+</head>
+<body>
+    <div class="auth-layout-wrap" style="background-image: url(../assets/images/photo-wide-4.jpg)">
+        <div class="auth-content">
+            <div class="card o-hidden">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="p-4">
+                            <div class="auth-logo text-center mb-4">
+                                <h1>eHealth</h1>
+                                <hr />
+                                <h1 class="mb-3 text-18">Sign In</h1>
+                            </div>
+                            
+                            <form class="md-float-material form-material" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
+
+                                @{
+                                    var errorMessage = this.TempData["ErrorMessage"]?.ToString();
+
+                                    if (!string.IsNullOrEmpty(errorMessage))
+                                    {
+                                        <div class="alert alert-danger">
+                                            <em>  @errorMessage </em>
+                                        </div>
+                                    }
+                                }
+                                @if (!Html.ViewData.ModelState.IsValid)
+                                {
+                                    <div class="alert alert-danger">
+                                        <div asp-validation-summary="All" class="text-danger text-justify"></div>
+                                    </div>
+
+
+
+                                }
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input asp-for="Email" class="form-control form-control-rounded">
+                                <em><span asp-validation-for="Email" class="text-danger"></span></em>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input asp-for="Password" class="form-control form-control-rounded" type="password">
+                                <em><span asp-validation-for="Password" class="text-danger"></span></em>
+                            </div>
+                                <button class="btn btn-rounded btn-primary btn-block mt-2" type="submit">Sign In</button>
+                            </form>
+                            @*<div class="mt-3 text-center">
+                                <a href="forgot-2.html" class="text-muted"><u>Forgot Password?</u></a>
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center " style="background-size: cover;background-image: url(../assets/images/photo-long-3.jpg">
+                        @*<div class="pr-3 auth-right">
+                            <a class="btn btn-rounded btn-outline-primary btn-outline-email btn-block btn-icon-text" href="signup-2.html">
+                                <i class="i-Mail-with-At-Sign"></i> Sign up with Email
+                            </a>
+                            <a class="btn btn-rounded btn-outline-primary btn-outline-google btn-block btn-icon-text">
+                                <i class="i-Google-Plus"></i> Sign up with Google
+                            </a>
+                          
+                            <a class="btn btn-rounded btn-outline-primary btn-block btn-icon-text btn-outline-facebook">
+                                <i class="i-Facebook-2"></i> Sign up with Facebook
+                            </a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/js/common-bundle-script.js"></script>
+    <script src="~/assets/js/script.js"></script>
+</body>
+</html>
+

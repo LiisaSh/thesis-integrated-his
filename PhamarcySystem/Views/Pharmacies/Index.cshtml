@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PhamarcySystem.Models.Pharmacy>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Pharmacies</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Create New</a>
+</p>
+<table class="table table-bordered" id="example">
+    <thead>
+        <tr>
+            <th>
+                Pharmancy Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PharmancyName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PharmacyId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PharmacyId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PharmacyId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@model DHIS.Models.Prescription
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Modify Prescription</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PrescriptionID" />
+                <input asp-for="PrescriptionPatientID" class="form-control" type="hidden" />
+
+                <div class="form-group">
+                    <label asp-for="PrescriptionNotes" class="control-label"></label>
+                    <textarea asp-for="PrescriptionNotes" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="PrescriptionNotes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Diagonosis" class="control-label"></label>
+                    <textarea asp-for="Diagonosis" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Diagonosis" class="text-danger"></span>
+                </div>
+
+                <input asp-for="DiagonosisBy" class="form-control" type="hidden" />
+
+                <input asp-for="Created_by" class="form-control" type="hidden" />
+
+                <input asp-for="Modified_by" class="form-control" type="hidden" />
+
+                <input asp-for="Created_on" class="form-control" type="hidden" />
+
+                <input asp-for="Modified_on" class="form-control" type="hidden" />
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success btn-rounded" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

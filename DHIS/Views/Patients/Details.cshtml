@@ -1,0 +1,139 @@
+﻿@model DHIS.Models.PatientViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h2>Patient Details</h2>
+    </div>
+    <div class="card-body">
+
+        <div>
+           
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.FullName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.FullName)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.Gender)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.Gender)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.Nationality)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.Nationality)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.IDNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.IDNumber)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.DOB)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.DOB)
+                        </dd>
+                        
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.CellphoneNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.CellphoneNumber)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.PostalAddress)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.PostalAddress)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.ResidentialAddress)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.ResidentialAddress)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.NextOfKin)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.NextOfKin)
+                        </dd>
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.NextOfKinCell)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.NextOfKinCell)
+                        </dd>
+
+                        <dt class="text-danger">
+                            @Html.DisplayNameFor(model => model.GetPatientDetails.Created_on)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.GetPatientDetails.Created_on)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+           <hr />
+
+            <div class="row col-md-12">
+                <h1> Prescriptions and Diagonosis</h1>
+
+                <table class="table  table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Diagonosis</th>
+                            <th>Prescription Note</th>
+                            <th>Prescription Collected? </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.GetPrescriptions)
+                        {
+                            var status = "";
+                        <tr>
+                            <td>@item.Diagonosis</td>
+                            <td>@Html.Raw(item.PrescriptionNotes.Replace(Environment.NewLine,"<br />"))</td>
+                            <th>
+                                @if (@item.PrescriptionCollected)
+                                {
+                                    status = "YES";
+                                    @status;
+                                }
+                                else
+                                {
+
+                                    status = "NO";
+                                    @status;
+                                }
+                                                </th>
+                            <td><a class="dropdown-item btn btn-success" asp-controller="Prescriptions" asp-action="Edit" asp-route-id="@item.PrescriptionID">Edit</a></td>
+                        
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+                
+        </div>
+        </div>
+    </div>

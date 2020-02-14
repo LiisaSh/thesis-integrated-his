@@ -1,0 +1,61 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using PhamarcySystem.Models
+@using PhamarcySystem.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.FindByEmailAsync(UserManager.GetUserName(User));
+
+
+}
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    if (user.AccountType == "Pharmacist")
+    {
+
+        <div class="container">
+            <div class="row">
+                <div class="well" style="margin-top:100px">
+                    <h1>   Welcome to Pharmancy {Patient Prescription Managment System} </h1>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 well alert alert-info">
+                        Registered Pantients
+                        <hr />
+
+                        <h1> @ViewBag.prescription</h1>
+                    </div>
+                    <div class="col-md-4 well alert alert-success">
+                        Prescriptions Adhered to / Collected
+                        <hr />
+                        <h1> @ViewBag.collected</h1>
+                    </div>
+                    <div class="col-md-4 well alert alert-danger">
+                        Prescriptions Adhered not collected
+                        <hr />
+                        <h1>@ViewBag.notcollected</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <em>  <h1>YOU ARE NOT ALLOWED TO VIEW THIS SYSTEM'S FUNCTINOS</h1> </em>
+            <a class="btn btn-block btn-info" asp-controller="Account" asp-action="Login">Go Back</a>
+        </div>
+
+    }
+}

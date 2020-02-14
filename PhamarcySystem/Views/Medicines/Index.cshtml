@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PhamarcySystem.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Mdicine List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Create New</a>
+</p>
+<table class="table table-bordered" id="example">
+    <thead>
+        <tr>
+            <th>
+                Medicine Code
+            </th>
+            <th>
+                Medicine Name
+            </th>
+            <th>
+                Disease Cured
+            </th>
+            <th>
+                Quantity (in stock)
+            </th>
+            <th>
+                Available in Pharmacy
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiseaseCured)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PharmacyMedic.PharmancyName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MedicineId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MedicineId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MedicineId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

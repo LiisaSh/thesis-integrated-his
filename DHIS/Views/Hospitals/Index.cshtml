@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DHIS.Models.Hospital>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h2>Hospitals</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HospitalName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HospitalName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.HospitalID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.HospitalID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.HospitalID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+</div>
